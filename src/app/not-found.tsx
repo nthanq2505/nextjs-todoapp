@@ -2,7 +2,7 @@ import React from "react";
 import LeftBackground from "./components/leftBackground";
 import { Image, VStack, Button, HStack } from "@chakra-ui/react";
 import errorRip from "../../public/errorRip.png";
-
+import NextLink from "next/link";
 
 const NotFoundPage = () => {
   return (
@@ -18,9 +18,11 @@ const NotFoundPage = () => {
         spacing={10}
       >
         <Image src={errorRip.src} alt="Error Rip" boxSize="320px" />
-        <Button colorScheme="teal" size="md">
-          Back
-        </Button>
+        <NextLink href="/" passHref>
+          <Button colorScheme="teal" size="md">
+            Back
+          </Button>
+        </NextLink>
       </VStack>
     </HStack>
   );

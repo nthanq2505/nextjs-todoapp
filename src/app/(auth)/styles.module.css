@@ -1,0 +1,11 @@
+.authForm {
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  width: 35%;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 1;
+  gap: 40px;
+}

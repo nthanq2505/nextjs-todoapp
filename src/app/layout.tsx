@@ -2,6 +2,12 @@ import "./page.module.css";
 import { Providers } from "./providers";
 import { inter } from "./fonts";
 
+export const metadata = {
+  title: "Todo App",
+  description: "A simple todo app",
+  image: "/og.png",
+};
+
 export default function RootLayout({
   children,
 }: {
