@@ -1,0 +1,57 @@
+@startuml SERP_ERD_Optimized
+
+entity "User" as user {
+    + id: number <<PK>>
+    --
+    fullName: string
+    email: string <<unique>>
+    password: string
+    createdAt: datetime
+    updatedAt: datetime
+}
+
+entity "UserTodolist" as user_todolist {
+    + id: number <<PK>>
+    --
+    # userId: number <<FK>>
+    # todolistId: number <<FK>>
+    --
+    role: string
+    createdAt: datetime
+    updatedAt: datetime
+}
+
+entity "Todolist" as todolist {
+    + id: number <<PK>>
+    --
+    name: string
+    startDate: datetime
+    endDate: datetime
+    createdBy: number <<FK>>
+    createdAt: datetime
+    updatedAt: datetime
+}
+
+entity "Todo" as todo {
+    + id: number <<PK>>
+    --
+    # todolistId: number <<FK>>
+    # assignedUserId: number <<FK>>
+    # createdBy: number <<FK>>
+    # parentTodoId: number <<FK>>
+    --
+    name: string
+    completed: boolean
+    startDate: datetime 
+    dueDate: datetime
+    completedDate: datetime
+    createdAt: datetime
+    updatedAt: datetime
+}
+
+user ||--|{ user_todolist
+user_todolist }|--|| todolist
+todolist ||--o{ todo : includes
+user ||--o{ todo : "assigned to | created by"   
+todo }o-|| todo : "parent-child"
+@enduml
