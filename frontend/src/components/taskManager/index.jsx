@@ -11,7 +11,6 @@ import { fetchTaskRequest } from "../../redux/actions/task.actions";
 const TaskManager = () => {
   const dispatch = useDispatch();
   const { tasks, loading, error } = useSelector(state => state.task);
-  console.log(tasks)
 
   useEffect(() => {
     dispatch(fetchTaskRequest());

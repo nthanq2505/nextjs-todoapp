@@ -21,8 +21,6 @@ function* addTask (action) {
 function* fetchTask () {
   try {
     const response = yield call(fetchTaskAPI)
-    console.log(response);
-    
     yield put({ type: FETCH_TASK_SUCCESS, payload: response.data })
   } catch (error) {
     yield put({ type: FETCH_TASK_FAILURE, error: error.message })
@@ -36,3 +34,4 @@ export function* watchFetchTask () {
 export function* watchAddTask () {
   yield takeLatest(ADD_TASK_REQUEST, addTask)
 }
+
