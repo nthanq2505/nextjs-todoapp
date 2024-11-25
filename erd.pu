@@ -49,9 +49,9 @@ entity "Todo" as todo {
     updatedAt: datetime
 }
 
-user ||--|{ user_todolist
+user ||--o{ user_todolist
 user_todolist }|--|| todolist
 todolist ||--o{ todo : includes
-user ||--o{ todo : "assigned to | created by"   
+user ||--|| todo : "assigned to | created by"   
 todo }o-|| todo : "parent-child"
 @enduml

@@ -6,7 +6,7 @@ import AddTask from "../addTask";
 // import Filter from "../filter";
 import Task from "../task";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchTaskRequest } from "../../redux/actions/task.actions";
+import { fetchTaskRequest } from "../redux/actions/task.actions";
 
 const TaskManager = () => {
   const dispatch = useDispatch();
