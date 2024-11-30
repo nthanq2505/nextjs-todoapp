@@ -10,6 +10,17 @@ entity "User" as user {
     updatedAt: datetime
 }
 
+entity "Todolist" as todolist {
+    + id: number <<PK>>
+    --
+    name: string
+    startDate: datetime
+    endDate: datetime
+    --
+    createdAt: datetime
+    updatedAt: datetime
+}
+
 entity "UserTodolist" as user_todolist {
     + id: number <<PK>>
     --
@@ -17,17 +28,9 @@ entity "UserTodolist" as user_todolist {
     # todolistId: number <<FK>>
     --
     role: string
-    createdAt: datetime
-    updatedAt: datetime
-}
-
-entity "Todolist" as todolist {
-    + id: number <<PK>>
     --
-    name: string
-    startDate: datetime
-    endDate: datetime
-    createdBy: number <<FK>>
+    createdBy: number
+    updatedBy: number
     createdAt: datetime
     updatedAt: datetime
 }
@@ -36,8 +39,6 @@ entity "Todo" as todo {
     + id: number <<PK>>
     --
     # todolistId: number <<FK>>
-    # assignedUserId: number <<FK>>
-    # createdBy: number <<FK>>
     # parentTodoId: number <<FK>>
     --
     name: string
@@ -45,13 +46,21 @@ entity "Todo" as todo {
     startDate: datetime 
     dueDate: datetime
     completedDate: datetime
+    --
+    createdBy: number
+    updatedBy: number
     createdAt: datetime
     updatedAt: datetime
 }
 
-user ||--o{ user_todolist
-user_todolist }|--|| todolist
-todolist ||--o{ todo : includes
-user ||--|| todo : "assigned to | created by"   
-todo }o-|| todo : "parent-child"
+' Relationships
+user ||--o{ todolist: createBy, updateBy
+user ||--o{ user_todolist: assigned roles
+user ||--o{ todo: assigned tasks
+
+todolist ||--o{ todo: contains
+todolist ||--o{ user_todolist: todolists roles
+
+todo ||--o{ todo: parent-child
+
 @enduml
